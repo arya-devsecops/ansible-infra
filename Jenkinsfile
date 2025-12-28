@@ -9,14 +9,14 @@ pipeline {
     )
   }
 
-  stages {
     stage('Run Ansible') {
-      steps {
-        sh """
-        ansible-playbook playbooks/roles.yml \
-          --limit ${TARGET_IP}
-        """
-      }
+        steps {
+            sh '''#!/bin/bash
+            set -e
+            /usr/bin/ansible-playbook roles.yml \
+            --limit ${TARGET_IP}
+            '''
+        }
     }
-  }
+
 }
