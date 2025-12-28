@@ -1,0 +1,10 @@
+- name: Configure servers dynamically
+  hosts: servers
+  become: yes
+  roles:
+    - java
+    - tomcat
+    - nginx
+    - jenkins
+    - python
+    - teleport

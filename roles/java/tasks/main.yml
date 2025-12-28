@@ -1,0 +1,2 @@
+- name: Install Java from central task file
+  import_tasks: ../../tasks/java.yml
