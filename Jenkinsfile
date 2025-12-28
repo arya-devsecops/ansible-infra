@@ -5,7 +5,7 @@ pipeline {
         choice(
             name: 'AGENT_LABEL',
             choices: [
-                'built-in',
+                'agent-2',
                 'agent-1'
             ],
             description: 'Select Jenkins agent to run the job'
