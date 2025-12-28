@@ -2,9 +2,9 @@
   hosts: servers
   become: yes
   roles:
-    - java
+    # - java
     - tomcat
-    - nginx
-    - jenkins
-    - python
-    - teleport
+    # - nginx
+    # - jenkins
+    # - python
+    # - teleport
