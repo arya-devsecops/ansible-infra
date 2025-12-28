@@ -9,6 +9,7 @@ pipeline {
     )
   }
 
+  stages {
     stage('Run Ansible') {
         steps {
             sh '''#!/bin/bash
@@ -18,5 +19,5 @@ pipeline {
             '''
         }
     }
-
+  }
 }
