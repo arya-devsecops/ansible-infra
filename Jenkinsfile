@@ -1,23 +1,43 @@
 pipeline {
-  agent any
+    agent { label "${AGENT_LABEL}" }
 
-  parameters {
-    string(
-      name: 'TARGET_IP',
-      defaultValue: '10.128.0.5',
-      description: 'IP of server to bootstrap'
-    )
-  }
+    parameters {
+        choice(
+            name: 'AGENT_LABEL',
+            choices: [
+                'built-in',
+                'agent-1'
+            ],
+            description: 'Select Jenkins agent to run the job'
+        )
 
-  stages {
-    stage('Run Ansible') {
-        steps {
-            sh '''#!/bin/bash
-            set -e
-            /usr/bin/ansible-playbook roles.yml \
-            --limit ${TARGET_IP}
-            '''
+        string(
+            name: 'TARGET_IP',
+            defaultValue: '10.128.0.5',
+            description: 'Target server IP'
+        )
+    }
+
+    stages {
+        stage('Verify Agent') {
+            steps {
+                sh '''
+                echo "Running on agent:"
+                hostname
+                whoami
+                '''
+            }
+        }
+
+        stage('Run Ansible') {
+            steps {
+                sh '''#!/bin/bash
+                set -e
+                which ansible-playbook || true
+                /usr/bin/ansible-playbook roles.yml \
+                  --limit ${TARGET_IP}
+                '''
+            }
         }
     }
-  }
 }
