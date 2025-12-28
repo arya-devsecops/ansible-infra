@@ -1,10 +1,10 @@
 pipeline {
   agent any
-// jkdcjfbjdj
+
   parameters {
     string(
       name: 'TARGET_IP',
-      defaultValue: '10.128.0.4',
+      defaultValue: '10.128.0.5',
       description: 'IP of server to bootstrap'
     )
   }
@@ -13,7 +13,7 @@ pipeline {
     stage('Run Ansible') {
       steps {
         sh """
-        ansible-playbook playbooks/site.yml \
+        ansible-playbook playbooks/roles.yml \
           --limit ${TARGET_IP}
         """
       }
