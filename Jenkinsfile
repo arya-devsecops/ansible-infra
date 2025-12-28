@@ -34,7 +34,7 @@ pipeline {
                 sh '''#!/bin/bash
                 set -e
                 which ansible-playbook || true
-                /usr/bin/ansible-playbook roles.yml \
+                /usr/bin/ansible-playbook playbooks/roles.yml \
                   --limit ${TARGET_IP}
                 '''
             }
