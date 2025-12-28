@@ -2,7 +2,7 @@
   hosts: servers
   become: yes
   roles:
-    # - java
+    - java
     - tomcat
     # - nginx
     # - jenkins
